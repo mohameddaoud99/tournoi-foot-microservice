@@ -56,7 +56,22 @@ public class EquipeService {
         return entraineur.createEntraineur(entraineurRequest);
     }
 
+    public Equipe updateEquipe(@PathVariable Long equipe_id, @RequestBody CreateEquipeRequest createEquipeRequest) {
+        Optional<Equipe> emp = equipeRepository.findById(equipe_id);
 
+        Equipe existEmp = emp.get();
+        existEmp.setNom(createEquipeRequest.getNom());
+        existEmp.setId_entraineur(createEquipeRequest.getId_entraineur());
+        existEmp.setClassement(createEquipeRequest.getClassement());
+        existEmp.setPoints(createEquipeRequest.getPoints());
+        existEmp.setJoueurs(createEquipeRequest.getJoueurs());
+        existEmp.setId_entraineur(createEquipeRequest.getId_entraineur());
+
+
+        equipeRepository.save(existEmp);
+        return existEmp;
+
+    }
 
 
     public List<Equipe> getEquipe()
@@ -64,7 +79,7 @@ public class EquipeService {
         return equipeRepository.findAll();
     }
 
-    public Equipe updateEquipe(@PathVariable Long equipe_id, @RequestBody Equipe equipe) {
+    /*public Equipe updateEquipe(@PathVariable Long equipe_id, @RequestBody Equipe equipe) {
         Optional<Equipe> emp = equipeRepository.findById(equipe_id);
 
         Equipe existEmp = emp.get();
@@ -75,7 +90,7 @@ public class EquipeService {
         equipeRepository.save(existEmp);
         return existEmp;
 
-    }
+    }*/
 
     public String deleteEquipe(Long equipeId) {
 

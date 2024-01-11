@@ -36,9 +36,14 @@ public class EquipeController {
         return equipeService.getEquipe();
     }
 
-    @PutMapping("updateEquipe/{id}")
+   /* @PutMapping("updateEquipe/{id}")
     public Equipe updateEquipe(@PathVariable Long id, @RequestBody  Equipe equipe) {
         return equipeService.updateEquipe(id,equipe);
+    }*/
+
+    @PutMapping("updateEquipe/{id}")
+    public Equipe updateEquipe(@PathVariable Long id, @RequestBody  CreateEquipeRequest createEquipeRequest) {
+        return equipeService.updateEquipe(id,createEquipeRequest);
     }
 
     @DeleteMapping("deleteEquipe/{id}")
