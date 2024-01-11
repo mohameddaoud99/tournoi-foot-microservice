@@ -17,8 +17,14 @@ public class Equipe {
     @Column(name = "nom")
     private String nom;
 
-    @Column(name = "nom_entraineur")
-    private String nom_entraineur;
+    @Column(name = "classement")
+    private Integer classement;
+
+    @Column(name = "points")
+    private Integer points;
+
+    @Column(name = "id_entraineur")
+    private Long id_entraineur;
 
     @OneToMany(mappedBy = "equipe", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private Set<Joueur> joueurs = new HashSet<>();
@@ -39,12 +45,28 @@ public class Equipe {
         this.nom = nom;
     }
 
-    public String getNom_entraineur() {
-        return nom_entraineur;
+    public Integer getClassement() {
+        return classement;
     }
 
-    public void setNom_entraineur(String nom_entraineur) {
-        this.nom_entraineur = nom_entraineur;
+    public void setClassement(Integer classement) {
+        this.classement = classement;
+    }
+
+    public Integer getPoints() {
+        return points;
+    }
+
+    public void setPoints(Integer points) {
+        this.points = points;
+    }
+
+    public Long getId_entraineur() {
+        return id_entraineur;
+    }
+
+    public void setId_entraineur(Long id_entraineur) {
+        this.id_entraineur = id_entraineur;
     }
 
     public Set<Joueur> getJoueurs() {

@@ -3,15 +3,19 @@ package tn.iit.microservice01.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.iit.microservice01.entity.Equipe;
-import tn.iit.microservice01.entity.Joueur;
+import tn.iit.microservice01.request.CreateEquipeRequest;
+import tn.iit.microservice01.response.EquipeResponse;
 import tn.iit.microservice01.service.EquipeService;
-import tn.iit.microservice01.service.JoueurService;
+
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/equipes")
-public class EquipeController {
 
+
+
+public class EquipeController {
     @Autowired
     EquipeService equipeService;
 
@@ -21,6 +25,26 @@ public class EquipeController {
         return equipeService.addEquipe(equipe);
     }
 
+    @PostMapping("createEquipe")
+    public EquipeResponse createEquipe (@RequestBody CreateEquipeRequest createEquipeRequest) {
+        return equipeService.createEquipe(createEquipeRequest);
+    }
 
+
+    @GetMapping("getAllEquipe")
+    public List<Equipe> getAllEquipe() {
+        return equipeService.getEquipe();
+    }
+
+    @PutMapping("updateEquipe/{id}")
+    public Equipe updateEquipe(@PathVariable Long id, @RequestBody  Equipe equipe) {
+        return equipeService.updateEquipe(id,equipe);
+    }
+
+    @DeleteMapping("deleteEquipe/{id}")
+    public String deleteEquipe(@PathVariable Long id) {
+        equipeService.deleteEquipe(id);
+        return "equipe deleted";
+    }
 
 }

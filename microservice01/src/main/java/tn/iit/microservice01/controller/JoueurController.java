@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
 import tn.iit.microservice01.entity.Joueur;
+import tn.iit.microservice01.request.CreateJoueurRequest;
+import tn.iit.microservice01.response.JoueurResponse;
 import tn.iit.microservice01.service.JoueurService;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -21,8 +23,13 @@ public class JoueurController {
     @Autowired
     CompteDao compteDao;*/
 
-    @PostMapping("addJoueur")
+    /*@PostMapping("addJoueur")
     public Joueur addCompte(@RequestBody  Joueur joueur) {
+        return joueurService.createJoueur(joueur);
+    }*/
+
+    @PostMapping("addJoueur")
+    public JoueurResponse addCompte(@RequestBody CreateJoueurRequest joueur) {
         return joueurService.createJoueur(joueur);
     }
 

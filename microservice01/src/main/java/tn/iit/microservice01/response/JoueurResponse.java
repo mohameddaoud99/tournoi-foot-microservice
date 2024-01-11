@@ -10,7 +10,6 @@ public class JoueurResponse {
 
     private String prenom;
 
-
     private Equipe equipe;
 
     public JoueurResponse(Joueur joueur) {
@@ -42,4 +41,5 @@ public class JoueurResponse {
     public void setEquipe(Equipe equipe) {
         this.equipe = equipe;
     }
+
 }
