@@ -1,6 +1,6 @@
 package tn.iit.microservice01.entity;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
@@ -18,9 +18,10 @@ public class Joueur {
     @Column(name = "prenom")
     private String prenom;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_equipe")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Equipe equipe;
 
 

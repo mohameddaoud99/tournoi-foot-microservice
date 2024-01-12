@@ -2,7 +2,11 @@ package tn.iit.microservice02.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,4 +26,19 @@ public class EntraineurController {
         return entreneurService.createEntraineur(createEntraineurRequest);
     }
 
+	@GetMapping("getById/{id}")
+	public EntraineurResponse getById (@PathVariable long id) {
+		return entreneurService.getById(id);
+	}
+	
+	@DeleteMapping("deleteById/{id}")
+    public String deleteById(@PathVariable long id) {
+        entreneurService.deleteById(id);
+        return "Entraineur supprimé avec succès";
+    }
+	
+	 @PutMapping("update/{id}")
+	    public EntraineurResponse updateEntraineur(@PathVariable long id, @RequestBody CreateEntraineurRequest createEntraineurRequest) {
+	        return entreneurService.updateEntraineur(id, createEntraineurRequest);
+	    }
 }

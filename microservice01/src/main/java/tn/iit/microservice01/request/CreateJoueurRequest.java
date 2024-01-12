@@ -10,7 +10,9 @@ public class CreateJoueurRequest {
     private String prenom;
 
 
-    private Equipe equipe;
+    private Long equipeId;
+
+    //private Equipe equipe;
 
 
 
@@ -31,11 +33,19 @@ public class CreateJoueurRequest {
         this.prenom = prenom;
     }
 
-    public Equipe getEquipe() {
+   /* public Equipe getEquipe() {
         return equipe;
     }
 
     public void setEquipe(Equipe equipe) {
         this.equipe = equipe;
+    }*/
+    
+    public Long getEquipeId() {
+        return equipeId;
+    }
+
+    public void setEquipeId(Long equipeId) {
+        this.equipeId = equipeId;
     }
 }
