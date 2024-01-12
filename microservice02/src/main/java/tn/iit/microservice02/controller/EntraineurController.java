@@ -2,10 +2,7 @@ package tn.iit.microservice02.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tn.iit.microservice02.request.CreateEntraineurRequest;
 import tn.iit.microservice02.response.EntraineurResponse;
 import tn.iit.microservice02.service.EntreneurService;
@@ -20,6 +17,12 @@ public class EntraineurController {
     @PostMapping("/create")
     public EntraineurResponse createEntraineur (@RequestBody CreateEntraineurRequest createEntraineurRequest) {
         return entreneurService.createEntraineur(createEntraineurRequest);
+    }
+    @GetMapping("getById/{id}")
+
+    public EntraineurResponse getById (@PathVariable long id) {
+        System.out.println("its a me");
+        return entreneurService.getEntraineurById(id);
     }
 
 }

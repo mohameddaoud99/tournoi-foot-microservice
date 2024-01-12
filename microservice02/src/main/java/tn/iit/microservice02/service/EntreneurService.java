@@ -3,6 +3,7 @@ package tn.iit.microservice02.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.iit.microservice02.entity.Entraineur;
+import tn.iit.microservice02.exception.AdressBadRequestException;
 import tn.iit.microservice02.repository.EntraineurRepository;
 import tn.iit.microservice02.request.CreateEntraineurRequest;
 import tn.iit.microservice02.response.EntraineurResponse;
@@ -25,4 +26,9 @@ public class EntreneurService {
         return new EntraineurResponse(entraineur);
     }
 
+    public EntraineurResponse getEntraineurById(Long id) {
+        Entraineur address = entraineurRepository.findById(id).orElseThrow(() -> new AdressBadRequestException(id.toString()));
+        return new EntraineurResponse(address);
+
+    }
 }

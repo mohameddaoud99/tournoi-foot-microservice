@@ -18,6 +18,7 @@ import java.util.Optional;
 
 @Service
 public class EquipeService {
+
     @Autowired
     EquipeRepository equipeRepository;
 
@@ -43,6 +44,7 @@ public class EquipeService {
         equipe.setNom(createEquipeRequest.getNom());
         equipe.setClassement(createEquipeRequest.getClassement());
         equipe.setPoints(createEquipeRequest.getPoints());
+        equipe.setId_entraineur(entraineurResponse.getId());
         equipe.setJoueurs(createEquipeRequest.getJoueurs());
 
 
@@ -54,6 +56,60 @@ public class EquipeService {
 
     private EntraineurResponse callEntraineurServiceSave(CreateEntraineurRequest entraineurRequest) {
         return entraineur.createEntraineur(entraineurRequest);
+    }
+
+
+
+    public CreateEquipeRequest getEquipeById(Long id) {
+        Equipe equipe  = equipeRepository.findById(id).get();
+        EntraineurResponse entraineurResponse = entraineur.getById(equipe.getId_entraineur()) ;
+        CreateEquipeRequest equipeRequest = new CreateEquipeRequest();
+        equipeRequest.setId_entraineur(entraineurResponse.getId());
+        equipeRequest.setNom_entraineur(entraineurResponse.getNom());
+        equipeRequest.setPrenom_entraineur(entraineurResponse.getPrenom());
+
+        equipeRequest.setNom(equipe.getNom());
+        equipeRequest.setPoints(equipe.getPoints());
+        equipeRequest.setClassement(equipe.getClassement());
+        equipeRequest.setJoueurs(equipe.getJoueurs());
+
+
+        return equipeRequest;
+
+    }
+
+
+
+    /*private EntraineurResponse callEntraineurServiceFind(Long entraineurId) {
+        return entraineur.getById(entraineurId);
+    }*/
+
+    /*public EquipeResponse getById(Long id)
+    {
+        Equipe equipe= equipeRepository.findById(id);
+        EntraineurResponse entraineur = callEntraineurServiceFind(equipe.getId_entraineur());
+        return new EquipeResponse(equipe , entraineur);
+    }*/
+
+
+    /*public StudentResponse getById(long id) {
+        Student student = studentRepository.findById(id).get();
+        AddressResponse address = callAddressServiceFind(student.getAddressId());
+        return new StudentResponse(student, address);
+    }
+
+    private AddressResponse callAddressServiceFind(Long addressId) {
+        return address.getById(addressId);
+    }*/
+
+
+
+
+
+
+    public List<Equipe> getEquipe()
+    {
+        return equipeRepository.findAll();
     }
 
     public Equipe updateEquipe(@PathVariable Long equipe_id, @RequestBody CreateEquipeRequest createEquipeRequest) {
@@ -72,26 +128,6 @@ public class EquipeService {
         return existEmp;
 
     }
-
-
-    public List<Equipe> getEquipe()
-    {
-        return equipeRepository.findAll();
-    }
-
-    /*public Equipe updateEquipe(@PathVariable Long equipe_id, @RequestBody Equipe equipe) {
-        Optional<Equipe> emp = equipeRepository.findById(equipe_id);
-
-        Equipe existEmp = emp.get();
-        existEmp.setNom(equipe.getNom());
-        existEmp.setId_entraineur(equipe.getId_entraineur());
-        existEmp.setClassement(equipe.getClassement());
-        existEmp.setPoints(equipe.getPoints());
-        equipeRepository.save(existEmp);
-        return existEmp;
-
-    }*/
-
     public String deleteEquipe(Long equipeId) {
 
         equipeRepository.deleteById(equipeId);

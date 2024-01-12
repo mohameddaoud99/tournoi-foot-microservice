@@ -36,6 +36,17 @@ public class EquipeController {
         return equipeService.getEquipe();
     }
 
+
+    @GetMapping("getEquipeById/{id}")
+    public CreateEquipeRequest getEquipeById(@PathVariable Long  id) {
+        return equipeService.getEquipeById(id);
+    }
+
+    /*@GetMapping("getById/{id}")
+    public CreateStudentRequest getById (@PathVariable long id) {
+        return studentService.getSutdentById(id);
+    }*/
+
    /* @PutMapping("updateEquipe/{id}")
     public Equipe updateEquipe(@PathVariable Long id, @RequestBody  Equipe equipe) {
         return equipeService.updateEquipe(id,equipe);
