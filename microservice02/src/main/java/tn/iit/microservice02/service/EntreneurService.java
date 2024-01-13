@@ -26,7 +26,7 @@ public class EntreneurService {
         return new EntraineurResponse(entraineur);
     }
     
-	public EntraineurResponse getById (long id) {
+	public EntraineurResponse getEntraineurById (long id) {
 		Optional<Entraineur> entraineur = entraineurRepository.findById(id);
 		if(entraineur.isEmpty()) {
 			throw new EntreneurNotFoundException("entraineur inexistante");

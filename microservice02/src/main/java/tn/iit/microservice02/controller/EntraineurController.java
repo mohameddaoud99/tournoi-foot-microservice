@@ -26,10 +26,18 @@ public class EntraineurController {
         return entreneurService.createEntraineur(createEntraineurRequest);
     }
 
-	@GetMapping("getById/{id}")
+	/*@GetMapping("getById/{id}")
 	public EntraineurResponse getById (@PathVariable long id) {
 		return entreneurService.getById(id);
-	}
+	}*/
+    
+    @GetMapping("getById/{id}")
+
+    public EntraineurResponse getById (@PathVariable long id) {
+        System.out.println("its a me");
+        return entreneurService.getEntraineurById(id);
+    }
+	
 	
 	@DeleteMapping("deleteById/{id}")
     public String deleteById(@PathVariable long id) {
