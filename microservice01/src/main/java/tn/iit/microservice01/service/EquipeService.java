@@ -134,6 +134,9 @@ public class EquipeService {
         return "Success";
     }
 
+   public List<Equipe> getAllOrder() {
+        return equipeRepository.findAllOrder();
+    }
 
 
 

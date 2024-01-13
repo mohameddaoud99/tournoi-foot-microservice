@@ -63,4 +63,8 @@ public class EquipeController {
         return "equipe deleted";
     }
 
+   @GetMapping("/order")
+    List<Equipe> getAllOrder() {
+        return  equipeService.getAllOrder();
+    }
 }
